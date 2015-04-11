@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewArticleColloqueTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_titreActe}"/>
+                    <h:outputText value="#{articleColloqueController.selected.titreActe}" title="#{bundle.ViewArticleColloqueTitle_titreActe}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_volume}"/>
+                    <h:outputText value="#{articleColloqueController.selected.volume}" title="#{bundle.ViewArticleColloqueTitle_volume}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_pages}"/>
+                    <h:outputText value="#{articleColloqueController.selected.pages}" title="#{bundle.ViewArticleColloqueTitle_pages}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_lieu}"/>
+                    <h:outputText value="#{articleColloqueController.selected.lieu}" title="#{bundle.ViewArticleColloqueTitle_lieu}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_date}"/>
+                    <h:outputText value="#{articleColloqueController.selected.date}" title="#{bundle.ViewArticleColloqueTitle_date}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_doi}"/>
+                    <h:outputText value="#{articleColloqueController.selected.doi}" title="#{bundle.ViewArticleColloqueTitle_doi}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_issn}"/>
+                    <h:outputText value="#{articleColloqueController.selected.issn}" title="#{bundle.ViewArticleColloqueTitle_issn}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_url}"/>
+                    <h:outputText value="#{articleColloqueController.selected.url}" title="#{bundle.ViewArticleColloqueTitle_url}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_edition}"/>
+                    <h:outputText value="#{articleColloqueController.selected.edition}" title="#{bundle.ViewArticleColloqueTitle_edition}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_user}"/>
+                    <h:outputText value="#{articleColloqueController.selected.user}" title="#{bundle.ViewArticleColloqueTitle_user}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_id}"/>
+                    <h:outputText value="#{articleColloqueController.selected.id}" title="#{bundle.ViewArticleColloqueTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_auteur}"/>
+                    <h:outputText value="#{articleColloqueController.selected.auteur}" title="#{bundle.ViewArticleColloqueTitle_auteur}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_titre}"/>
+                    <h:outputText value="#{articleColloqueController.selected.titre}" title="#{bundle.ViewArticleColloqueTitle_titre}"/>
+                    <h:outputText value="#{bundle.ViewArticleColloqueLabel_resume}"/>
+                    <h:outputText value="#{articleColloqueController.selected.resume}" title="#{bundle.ViewArticleColloqueTitle_resume}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{articleColloqueController.destroyAndView}" value="#{bundle.ViewArticleColloqueDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewArticleColloqueEditLink}"/>
+                <br />
+                <h:commandLink action="#{articleColloqueController.prepareCreate}" value="#{bundle.ViewArticleColloqueCreateLink}" />
+                <br />
+                <h:commandLink action="#{articleColloqueController.prepareList}" value="#{bundle.ViewArticleColloqueShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewArticleColloqueIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

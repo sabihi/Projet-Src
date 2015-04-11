@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateArticleColloqueTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_titreActe}" for="titreActe" />
+                    <h:inputText id="titreActe" value="#{articleColloqueController.selected.titreActe}" title="#{bundle.CreateArticleColloqueTitle_titreActe}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_volume}" for="volume" />
+                    <h:inputText id="volume" value="#{articleColloqueController.selected.volume}" title="#{bundle.CreateArticleColloqueTitle_volume}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_pages}" for="pages" />
+                    <h:inputText id="pages" value="#{articleColloqueController.selected.pages}" title="#{bundle.CreateArticleColloqueTitle_pages}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_lieu}" for="lieu" />
+                    <h:inputText id="lieu" value="#{articleColloqueController.selected.lieu}" title="#{bundle.CreateArticleColloqueTitle_lieu}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_date}" for="date" />
+                    <h:inputText id="date" value="#{articleColloqueController.selected.date}" title="#{bundle.CreateArticleColloqueTitle_date}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_doi}" for="doi" />
+                    <h:inputText id="doi" value="#{articleColloqueController.selected.doi}" title="#{bundle.CreateArticleColloqueTitle_doi}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_issn}" for="issn" />
+                    <h:inputText id="issn" value="#{articleColloqueController.selected.issn}" title="#{bundle.CreateArticleColloqueTitle_issn}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{articleColloqueController.selected.url}" title="#{bundle.CreateArticleColloqueTitle_url}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_edition}" for="edition" />
+                    <h:inputText id="edition" value="#{articleColloqueController.selected.edition}" title="#{bundle.CreateArticleColloqueTitle_edition}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_user}" for="user" />
+                    <h:selectOneMenu id="user" value="#{articleColloqueController.selected.user}" title="#{bundle.CreateArticleColloqueTitle_user}" >
+                        <f:selectItems value="#{utilisateurController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{articleColloqueController.selected.id}" title="#{bundle.CreateArticleColloqueTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_auteur}" for="auteur" />
+                    <h:inputText id="auteur" value="#{articleColloqueController.selected.auteur}" title="#{bundle.CreateArticleColloqueTitle_auteur}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_titre}" for="titre" />
+                    <h:inputText id="titre" value="#{articleColloqueController.selected.titre}" title="#{bundle.CreateArticleColloqueTitle_titre}" />
+                    <h:outputLabel value="#{bundle.CreateArticleColloqueLabel_resume}" for="resume" />
+                    <h:inputText id="resume" value="#{articleColloqueController.selected.resume}" title="#{bundle.CreateArticleColloqueTitle_resume}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{articleColloqueController.create}" value="#{bundle.CreateArticleColloqueSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{articleColloqueController.prepareList}" value="#{bundle.CreateArticleColloqueShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateArticleColloqueIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

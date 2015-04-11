@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDocumentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDocumentLabel_user}" for="user" />
+                    <h:selectOneMenu id="user" value="#{documentController.selected.user}" title="#{bundle.EditDocumentTitle_user}" >
+                        <f:selectItems value="#{utilisateurController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDocumentLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{documentController.selected.id}" title="#{bundle.EditDocumentTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditDocumentLabel_auteur}" for="auteur" />
+                    <h:inputText id="auteur" value="#{documentController.selected.auteur}" title="#{bundle.EditDocumentTitle_auteur}" />
+                    <h:outputLabel value="#{bundle.EditDocumentLabel_titre}" for="titre" />
+                    <h:inputText id="titre" value="#{documentController.selected.titre}" title="#{bundle.EditDocumentTitle_titre}" />
+                    <h:outputLabel value="#{bundle.EditDocumentLabel_resume}" for="resume" />
+                    <h:inputText id="resume" value="#{documentController.selected.resume}" title="#{bundle.EditDocumentTitle_resume}" />
+                </h:panelGrid>
+                <h:commandLink action="#{documentController.update}" value="#{bundle.EditDocumentSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDocumentViewLink}"/>
+                <br />
+                <h:commandLink action="#{documentController.prepareList}" value="#{bundle.EditDocumentShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDocumentIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

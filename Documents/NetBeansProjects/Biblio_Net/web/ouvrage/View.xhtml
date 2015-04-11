@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOuvrageTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_titreOuvrage}"/>
+                    <h:outputText value="#{ouvrageController.selected.titreOuvrage}" title="#{bundle.ViewOuvrageTitle_titreOuvrage}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_volume}"/>
+                    <h:outputText value="#{ouvrageController.selected.volume}" title="#{bundle.ViewOuvrageTitle_volume}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_nbrVolume}"/>
+                    <h:outputText value="#{ouvrageController.selected.nbrVolume}" title="#{bundle.ViewOuvrageTitle_nbrVolume}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_pages}"/>
+                    <h:outputText value="#{ouvrageController.selected.pages}" title="#{bundle.ViewOuvrageTitle_pages}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_lieu}"/>
+                    <h:outputText value="#{ouvrageController.selected.lieu}" title="#{bundle.ViewOuvrageTitle_lieu}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_date}"/>
+                    <h:outputText value="#{ouvrageController.selected.date}" title="#{bundle.ViewOuvrageTitle_date}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_doi}"/>
+                    <h:outputText value="#{ouvrageController.selected.doi}" title="#{bundle.ViewOuvrageTitle_doi}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_issn}"/>
+                    <h:outputText value="#{ouvrageController.selected.issn}" title="#{bundle.ViewOuvrageTitle_issn}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_url}"/>
+                    <h:outputText value="#{ouvrageController.selected.url}" title="#{bundle.ViewOuvrageTitle_url}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_edition}"/>
+                    <h:outputText value="#{ouvrageController.selected.edition}" title="#{bundle.ViewOuvrageTitle_edition}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_user}"/>
+                    <h:outputText value="#{ouvrageController.selected.user}" title="#{bundle.ViewOuvrageTitle_user}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_id}"/>
+                    <h:outputText value="#{ouvrageController.selected.id}" title="#{bundle.ViewOuvrageTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_auteur}"/>
+                    <h:outputText value="#{ouvrageController.selected.auteur}" title="#{bundle.ViewOuvrageTitle_auteur}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_titre}"/>
+                    <h:outputText value="#{ouvrageController.selected.titre}" title="#{bundle.ViewOuvrageTitle_titre}"/>
+                    <h:outputText value="#{bundle.ViewOuvrageLabel_resume}"/>
+                    <h:outputText value="#{ouvrageController.selected.resume}" title="#{bundle.ViewOuvrageTitle_resume}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ouvrageController.destroyAndView}" value="#{bundle.ViewOuvrageDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOuvrageEditLink}"/>
+                <br />
+                <h:commandLink action="#{ouvrageController.prepareCreate}" value="#{bundle.ViewOuvrageCreateLink}" />
+                <br />
+                <h:commandLink action="#{ouvrageController.prepareList}" value="#{bundle.ViewOuvrageShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOuvrageIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

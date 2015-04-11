@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListArticleColloqueTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListArticleColloqueEmpty}" rendered="#{articleColloqueController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{articleColloqueController.items.rowCount > 0}">
+                    <h:outputText value="#{articleColloqueController.pagination.pageFirstItem + 1}..#{articleColloqueController.pagination.pageLastItem + 1}/#{articleColloqueController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{articleColloqueController.previous}" value="#{bundle.Previous} #{articleColloqueController.pagination.pageSize}" rendered="#{articleColloqueController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{articleColloqueController.next}" value="#{bundle.Next} #{articleColloqueController.pagination.pageSize}" rendered="#{articleColloqueController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{articleColloqueController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_titreActe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titreActe}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_volume}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.volume}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_pages}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pages}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_lieu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lieu}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_date}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_doi}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.doi}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_issn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.issn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_url}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.url}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_edition}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.edition}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_user}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.user}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_auteur}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.auteur}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_titre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticleColloqueTitle_resume}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resume}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{articleColloqueController.prepareView}" value="#{bundle.ListArticleColloqueViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{articleColloqueController.prepareEdit}" value="#{bundle.ListArticleColloqueEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{articleColloqueController.destroy}" value="#{bundle.ListArticleColloqueDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{articleColloqueController.prepareCreate}" value="#{bundle.ListArticleColloqueCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListArticleColloqueIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

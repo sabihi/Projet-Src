@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOuvrageTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_titreOuvrage}" for="titreOuvrage" />
+                    <h:inputText id="titreOuvrage" value="#{ouvrageController.selected.titreOuvrage}" title="#{bundle.CreateOuvrageTitle_titreOuvrage}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_volume}" for="volume" />
+                    <h:inputText id="volume" value="#{ouvrageController.selected.volume}" title="#{bundle.CreateOuvrageTitle_volume}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_nbrVolume}" for="nbrVolume" />
+                    <h:inputText id="nbrVolume" value="#{ouvrageController.selected.nbrVolume}" title="#{bundle.CreateOuvrageTitle_nbrVolume}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_pages}" for="pages" />
+                    <h:inputText id="pages" value="#{ouvrageController.selected.pages}" title="#{bundle.CreateOuvrageTitle_pages}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_lieu}" for="lieu" />
+                    <h:inputText id="lieu" value="#{ouvrageController.selected.lieu}" title="#{bundle.CreateOuvrageTitle_lieu}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_date}" for="date" />
+                    <h:inputText id="date" value="#{ouvrageController.selected.date}" title="#{bundle.CreateOuvrageTitle_date}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_doi}" for="doi" />
+                    <h:inputText id="doi" value="#{ouvrageController.selected.doi}" title="#{bundle.CreateOuvrageTitle_doi}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_issn}" for="issn" />
+                    <h:inputText id="issn" value="#{ouvrageController.selected.issn}" title="#{bundle.CreateOuvrageTitle_issn}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{ouvrageController.selected.url}" title="#{bundle.CreateOuvrageTitle_url}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_edition}" for="edition" />
+                    <h:inputText id="edition" value="#{ouvrageController.selected.edition}" title="#{bundle.CreateOuvrageTitle_edition}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_user}" for="user" />
+                    <h:selectOneMenu id="user" value="#{ouvrageController.selected.user}" title="#{bundle.CreateOuvrageTitle_user}" >
+                        <f:selectItems value="#{utilisateurController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ouvrageController.selected.id}" title="#{bundle.CreateOuvrageTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_auteur}" for="auteur" />
+                    <h:inputText id="auteur" value="#{ouvrageController.selected.auteur}" title="#{bundle.CreateOuvrageTitle_auteur}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_titre}" for="titre" />
+                    <h:inputText id="titre" value="#{ouvrageController.selected.titre}" title="#{bundle.CreateOuvrageTitle_titre}" />
+                    <h:outputLabel value="#{bundle.CreateOuvrageLabel_resume}" for="resume" />
+                    <h:inputText id="resume" value="#{ouvrageController.selected.resume}" title="#{bundle.CreateOuvrageTitle_resume}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ouvrageController.create}" value="#{bundle.CreateOuvrageSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ouvrageController.prepareList}" value="#{bundle.CreateOuvrageShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateOuvrageIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

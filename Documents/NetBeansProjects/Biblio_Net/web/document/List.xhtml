@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value=""></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <body onclick="#{documentNController.loadList(e)}">
+         <br />
+         
+         
+            
+        <br/>
+        <h:form id="tableView">
+            <p:growl id="growl" showDetail="true" sticky="false"  />
+            <p:dataTable var="item" value="#{documentNController.listeAttributs}" id="myData" widgetVar="myDataVar"
+                         emptyMessage="Table vide" paginator="false" rows="25" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,15,20" style="width:100%;font-size:13px;margin-left: 0px">
+                <f:facet name="header">
+                    <p:outputPanel>
+                        <h:outputLabel value="Catégorie" for="Categorie" />
+                        <h:selectOneMenu value="#{documentNController.nomCategorie}" id="comboBox" >
+                            <f:selectItems value="#{documentNController.listerCategories()}"/>
+                            <f:ajax event="change" listener="#{documentNController.listerAttributs(e)}" render="myData" execute="@this" />
+                        </h:selectOneMenu>
+                        <p:commandLink value="Supprimer" id="SupprimerCat"  update=":tableView:myData, :tableView:growl,comboBox" action="#{documentNController.supprimerCategorie()}"  title="Supprimer">
+<!--                            <img src="../images/deleteRow.png" />-->
+                            <f:ajax  listener="#{documentNController.initComboBox(e)}" render="myData" />
+                        </p:commandLink>
+                    </p:outputPanel>
+                   
+                </f:facet>
+                
+                <p:column id="Nom" headerText="Nom" >
+                    <h:outputText value="#{item[0]}" />
+                </p:column>
+                <p:column id="type" headerText="Type" >
+                    <h:outputText value="#{item[1]}" />
+                </p:column>
+                <p:column id="defaut" headerText="Null" >
+                    <h:outputText value="#{item[2]}" />
+                </p:column>
+              
+                <p:column style="width:4%">
+                    <p:commandLink id="Editer"  update=":editForm:displaye" oncomplete="editDialVar.show();" actionListener="#{documentNController.editLigneEvent(item)}" title="Editer">
+                      <img src="../images/editRow.png" />
+                </p:commandLink>
+                </p:column>
+                <p:column style="width:4%">  
+                    <p:commandLink id="Supprimer"  update=":tableView:myData, :tableView:growl" action="#{documentNController.supprimerLigne(item)}"  title="Supprimer">
+                      <img src="../images/deleteRow.png" />
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+            
+            <center>
+             <div class="footpage">     
+                <hr></hr>
+                    <h:outputLabel value="Nom" for="Nom" />
+                    <h:inputText id="nom" value="#{documentNController.nomAttribit}" title="nom" />
+                    
+                    <h:outputLabel value="defaut" for="defaut" />
+                    <h:selectOneMenu value="#{documentNController.defaut}" >
+                        <f:selectItem itemLabel="Obligatoire" itemValue="NOT NULL"/>
+                        <f:selectItem itemLabel="Facultatif" itemValue="DEFAULT NULL"/>
+                    </h:selectOneMenu>
+                    <em class="footBetween">
+                    <h:outputLabel value="Type" for="type" />
+                    <h:selectOneMenu id="type" value="#{documentNController.type}" >
+                        <f:selectItem itemLabel="Entier" itemValue="INT "/> 
+                        <f:selectItem itemLabel="Chaine de caractères" itemValue="VARCHAR (255) "/> 
+                   </h:selectOneMenu>
+                    <p:commandLink update=":tableView:myData,growl" action="#{documentNController.ajouterLigne()}" >
+                        <img  src="../images/info.png" title="ajouter"></img>
+                        <f:ajax event="click" listener="#{documentNController.listerAttributs(e)}" render="myData"/>
+                    </p:commandLink>
+                    </em>
+                    <br></br>
+                 
+                    <br></br>
+                    <br></br>
+                    
+                 
+                </div>
+                </center>
+        </h:form>
+        
+    
+        <p:dialog header="Modification" widgetVar="editDialVar" resizable="false" id="editDial" modal="true" appendToBody="true">
+        <h:form id="editForm">
+                <p:growl id="growl" showDetail="true" sticky="false" />
+                <h:panelGrid id="displaye" columns="2" cellpadding="4" style="margin:0 auto;">
+ 
+                    <f:facet name="header">
+                        <h:outputLabel value="Veuillez..."/>
+                    </f:facet>
+ 
+                   <h:outputLabel value="Nom" for="Nom" />
+                   <h:inputText id="nom" value="#{documentNController.ligne[0]}" title="nom" />
+                    
+                    <h:outputLabel value="defaut" for="defaut" />
+                    <h:selectOneMenu value="#{documentNController.ligne[2]}" >
+                        <f:selectItem itemLabel="Obligatoire" itemValue="NOT NULL"/>
+                        <f:selectItem itemLabel="Facultatif" itemValue="DEFAULT NULL"/>
+                    </h:selectOneMenu>
+                    <em class="footBetween">
+                    <h:outputLabel value="Type" for="type" />
+                    <h:selectOneMenu id="type" value="#{documentNController.ligne[1]}" >
+                        <f:selectItem itemLabel="Entier" itemValue="Int(11)"/>
+                        <f:selectItem itemLabel="Chaine de caractères" itemValue="varchar(255)"/>
+                   </h:selectOneMenu>
+                    </em>
+ 
+                </h:panelGrid>
+                <p:separator/>
+                <p:commandButton value="Enregistrer" update=":tableView:myData, growl" actionListener="#{documentNController.editionLigne(event)}" oncomplete="editDialVar.hide()"/>
+        </h:form>
+    </p:dialog>
+        </body>
+        </ui:define>
+    </ui:composition>
+
+</html>
